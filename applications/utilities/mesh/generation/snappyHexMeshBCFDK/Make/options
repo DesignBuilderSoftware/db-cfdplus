@@ -1,0 +1,37 @@
+EXE_INC = \
+    /* -g -DFULLDEBUG -O0 */ \
+    -I$(LIB_SRC)/parallel/decompose/decompositionMethods/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/fileFormats/lnInclude \
+    -I$(LIB_SRC)/triSurface/lnInclude \
+    -I$(LIB_SRC)/surfMesh/lnInclude \
+    -I$(LIB_SRC)/dynamicMesh/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+EXE_INC += \
+    -I$(BCFDKCOFPATH)/src/mesh/snappyHexMeshBCFDK/lnInclude
+
+EXE_LIBS = \
+    -lfiniteVolume \
+    -ldecompositionMethods \
+    -lmeshTools \
+    -lsurfMesh \
+    -lfileFormats \
+    -ldynamicMesh
+
+EXE_LIBS += \
+    -ltriSurface \
+    -L$(FOAM_USER_LIBBIN) \
+    -lsnappyHexMeshBCFDK
+
+#if (defined( WIN32 ) || defined( WIN64 ))
+
+EXE_LIBS += \
+    -lscotchDecomp -lptscotchDecomp
+
+#else
+
+EXE_LIBS += \
+    -L$(FOAM_LIBBIN)/dummy -lscotchDecomp -lptscotchDecomp \
+
+#endif

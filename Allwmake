@@ -1,0 +1,28 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+export BCFDKCOFPATH=$(pwd)
+
+if [ -e "$WM_PROJECT_DIR/wmake/scripts/AllwmakeArguments" ]; then
+  . $WM_PROJECT_DIR/wmake/scripts/AllwmakeArguments
+fi
+
+set -x
+
+#Building in multi-core is not guaranteed to work
+#uncoment the next line if you want to take the risk to build it faster,
+#assuming there is no possible way that an error will occur...
+export USE_MULTICORE=1
+
+if [ -n "$USE_MULTICORE" ]; then
+  export WM_NCOMPPROCS=${NUMBER_OF_PROCESSORS:-1}
+  test -r /proc/cpuinfo && \
+      export WM_NCOMPPROCS=$(egrep "^processor" /proc/cpuinfo | wc -l)
+  echo "Building enabled for $WM_NCOMPPROCS cores"
+fi
+
+wmake all src
+wmake all applications/utilities
+wmake all applications/solvers
+
+# ----------------------------------------------------------------- end-of-file

@@ -1,0 +1,6 @@
+internalWriterBCFDK.C
+
+patchNFaceSetsWriter.C
+manualFaceSetsWriter.C
+
+LIB = $(FOAM_USER_LIBBIN)/libfoamToVTKBCFDK

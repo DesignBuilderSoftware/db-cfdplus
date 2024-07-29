@@ -1,0 +1,4 @@
+/* Includes all turbulent models that are based on the new template mechanism */
+fluidThermoMomentumTransportModelsBCFDK.C
+
+LIB = $(FOAM_USER_LIBBIN)/libcompressibleMomentumTransportModelsBCFDK

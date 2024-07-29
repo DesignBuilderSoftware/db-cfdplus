@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+
+if [ -d .git ]
+then
+  GITPATH=.git
+else
+  GITPATH=$(sed -e 's=gitdir: ==' .git)
+fi
+
+if [ $(diff "${GITPATH}"/hooks/pre-commit scripts/pre-commit | wc -l) -gt 0 ]; then
+  echo "ERROR - The following two files are different:"
+  echo "    .git/hooks/pre-commit"
+  echo "    scripts/pre-commit"
+  echo "Aborting commit. Please update/fix accordingly!"
+  exit 1
+fi
+
+for FILE in `git diff-index --name-only --cached HEAD --`; do
+  case $FILE in
+    *.C|*.H)
+      if [ -e "$FILE" ]; then
+        # Remove trailing tabs and spaces
+        sed -i -e 's=[	 ]*$==g' $FILE 2> /dev/null
+
+        # Convert all tabs to 2 spaces
+        #   Reasoning: do not use tabs in quoted text, use \t instead.
+        sed -i -e 's=\t=  =g' $FILE 2> /dev/null
+        
+        #make it writable again, to override a possibly failed sed operation
+        chmod +w $FILE
+
+        git add $FILE
+      fi
+    ;;
+    *.c|*.h)
+      echo "Do NOT use *.c and *.h for file names! Detected this one: $FILE"
+      exit 1
+    ;;
+  esac
+done
+
+if [ $(git diff-index --name-only --cached HEAD -- | wc -l) -eq 0 ]; then
+
+  echo "After cleaning up code, there were no visible changes! Aborting commit."
+  echo "In case you're ammending a commit message, use the additional option '-n':"
+  echo "   git commit --amend -n"
+  exit 1
+
+fi
+
+#all done
+exit 0

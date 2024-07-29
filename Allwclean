@@ -1,0 +1,14 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+if [ -e "$WM_PROJECT_DIR/wmake/scripts/AllwmakeArguments" ]; then
+  . $WM_PROJECT_DIR/wmake/scripts/AllwmakeArguments
+fi
+
+set -x
+
+wclean all src
+wclean all applications/utilities
+wclean all applications/solvers
+
+# ----------------------------------------------------------------- end-of-file

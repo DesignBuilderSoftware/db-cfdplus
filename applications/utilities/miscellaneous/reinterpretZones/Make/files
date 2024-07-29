@@ -1,0 +1,15 @@
+reinterpretZones.C
+
+faceEntryList.C
+faceZoneEntry.C
+faceZoneEntryNew.C
+
+cellEntryList.C
+cellZoneEntry.C
+cellZoneEntryNew.C
+
+pointEntryList.C
+pointZoneEntry.C
+pointZoneEntryNew.C
+
+EXE = $(FOAM_USER_APPBIN)/reinterpretZones

@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      sampleDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+/* 
+    This dictionary sets the:
+    - clothing index
+    - activity level
+    - relative humidity
+*/
+
+// Clothing Index (0 to 2.5)
+clothingIndex             2.5;
+
+// Activity Level (0 to 1.0)
+activityLevel             0.5;
+
+// Relative Humidity (percentage, i. e., 0-100)
+relativeHumidity          60;
+
+// *********************************************************************** //

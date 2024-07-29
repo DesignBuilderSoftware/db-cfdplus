@@ -1,0 +1,4 @@
+wallRadiationHeat.C
+P1manipulatedMedium/P1manipulatedMedium.C
+
+EXE = $(FOAM_USER_APPBIN)/wallRadiationHeat

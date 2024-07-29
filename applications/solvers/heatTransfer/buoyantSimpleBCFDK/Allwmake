@@ -1,0 +1,20 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+[ -z "$BCFDKCOFPATH" ] && export BCFDKCOFPATH=$(while cd ..; do if [ -e "buildNclean.sh" ]; then pwd -P; break ; elif [ "$PWD" = "/" ]; then break; fi; done)
+
+[ -n "$BCFDKCOFPATH" ] && source $BCFDKCOFPATH/scripts/bCFDK_CoF_Checks && checkIfItShouldBuild
+
+set -x
+
+SENTENCE="was automatically modified from OpenFOAM, by FSD blueCAPE 2021-"
+
+sed -e 's=FatalErrorInFunction=WarningInFunction=' -e 's=> 1e-8=> 1e-5=' \
+    -e 's=exit(FatalError)=endl=' \
+    -e 's=is part of OpenFOAM='"${SENTENCE}"$(date +%Y)'=' \
+    $FOAM_SRC/finiteVolume/cfdTools/general/adjustPhi/adjustPhi.C \
+    > adjustPhiBCFDK.C
+
+wmake
+
+# ----------------------------------------------------------------- end-of-file

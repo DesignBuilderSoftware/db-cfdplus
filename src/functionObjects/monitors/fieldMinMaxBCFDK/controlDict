@@ -1,0 +1,60 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+//ommitted other keywods
+
+functions
+{
+    minMax
+    {
+        // Type of functionObject
+        type            fieldMinMaxBCFDK;
+
+        // Where to load it from (if not already in solver)
+        functionObjectLibs ("libMonitorsBCFDK.so");
+
+        // Function object enabled flag
+        enabled         true;
+
+        // Calculation modes: maximum or minimum - runTime modifiable
+        operation   maximum;
+
+        // Calculation modes: cells, boundaries or both - runTime modifiable
+        dataMode   both;
+
+        // Fields to be monitored - runTime modifiable
+        fields
+        (
+            U
+            p
+        );
+
+        // Names of the displayed names - runTime modifiable
+        identifiers
+        (
+            "U|Mag"
+            "Pressure"
+        );
+
+        // List of calculation modes:
+        //    scalar
+        //    magnitude
+        //    componentX
+        //    componentY
+        //    componentZ
+        // - runTime modifiable
+        modes
+        (
+            scalar
+            magnitude
+        );
+    }
+}
+
+// ************************************************************************* //

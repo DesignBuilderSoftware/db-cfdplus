@@ -1,0 +1,45 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.0                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root	    ".";
+    case 	    "test";
+    instance        "system";
+    local           "";
+
+    class           dictionary;
+    object          orientFaceZonesBCFDKDict;
+}
+
+// ************************************************************************* //
+
+// faceZones to re-orient
+faceZoneOutsidePointPairs
+(
+    {
+        // Name of the faceZoneSet
+        faceZone f0;
+        
+        // Reference point that is "outside" of the faceZoneSet
+        outsidePoint  (0 0 0);
+    }
+
+    {
+        // Name of the faceZoneSet
+        faceZone f1;
+        
+        // Reference point that is "outside" of the faceZoneSet
+        outsidePoint  (-10 20 40);
+    }
+);
+
+// ************************************************************************* //

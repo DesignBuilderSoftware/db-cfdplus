@@ -1,0 +1,10 @@
+commonDictBCFDK/commonDictBCFDK.C
+
+fieldMinMaxBCFDK/fieldMinMaxBCFDK.C
+interpolatingProbeBCFDK/interpolatingProbeBCFDK.C
+monitorSavedTime/monitorSavedTimeBCFDK.C
+residualsBCFDK/residualsBCFDK.C
+surfaceFieldValueBCFDK/surfaceFieldValueBCFDK.C
+volumeFieldValueBCFDK/volumeFieldValueBCFDK.C
+
+LIB = $(FOAM_USER_LIBBIN)/libMonitorsBCFDK

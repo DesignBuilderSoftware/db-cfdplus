@@ -1,0 +1,35 @@
+
+/* It mostly already inherits from the default dependencies on the OpenFOAM library. */
+
+ifneq (,$(findstring mingw,$(WM_ARCH)))
+
+EXE_INC = \
+    -include Time.T.H
+
+else
+
+EXE_INC = \
+    -include Time.H
+
+endif
+
+LIB_LIBS = 
+
+/* Introduce the hacks needed for creating our variants */
+
+ORIG_LIB_PATH = $(FOAM_SRC)/OpenFOAM/matrices
+
+HLNtoo = $E $(call QUIET_MESSAGE,./transformFile.sh,$(<F)) \
+    $(WM_SCHEDULER) ./transformFile.sh \
+        $(ORIG_LIB_PATH)/$(<D)/$(<F:_.HLN=.H) > ./lnInclude/BCFDK_$(<F:_.HLN=.H) $(AND) \
+    touch $@.C $(AND) \
+    $(CC) $(c++FLAGS) $(c++LESSWARN) -c $@.C -o $@
+
+$(eval $(call DEFINE_TRANSFORM,.HLN))
+
+LNtoo = $E $(call QUIET_MESSAGE,./transformFile.sh,$(<F)) \
+    $(WM_SCHEDULER) ./transformFile.sh \
+        $(ORIG_LIB_PATH)/$(<D)/$(<F:LN=C) > $(@D)/BCFDK_$(<F).C $(AND) \
+    $(CC) $(c++FLAGS) $(c++LESSWARN) -c $(@D)/BCFDK_$(<F).C -o $@
+
+$(eval $(call DEFINE_TRANSFORM,.LN))

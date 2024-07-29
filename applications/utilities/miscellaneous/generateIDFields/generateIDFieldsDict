@@ -1,0 +1,28 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| Template file for blueCFD-Kernel by blueCAPE: http://www.bluecape.com.pt    |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root	    ".";
+    case 	    "test";
+    instance        "system";
+    local           "";
+
+    class           dictionary;
+    object          sampleDict;
+}
+
+// ************************************************************************* //
+
+// Patches to be tagged as "side B" (namely = 1.0)
+sideBPatchNames
+(
+	surface_001_half_1
+);
+
+
+// ************************************************************************* //

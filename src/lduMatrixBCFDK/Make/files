@@ -1,0 +1,13 @@
+
+GAMG = lduMatrix/solvers/GAMG
+$(GAMG)/GAMGSolver_.HLN
+$(GAMG)/GAMGSolver.LN
+$(GAMG)/GAMGSolverAgglomerateMatrix.LN
+$(GAMG)/GAMGSolverInterpolate.LN
+$(GAMG)/GAMGSolverScale.LN
+$(GAMG)/GAMGSolverSolve.LN
+
+lduMatrix/solvers/PBiCGStab/PBiCGStab_.HLN
+lduMatrix/solvers/PBiCGStab/PBiCGStab.LN
+
+LIB = $(FOAM_USER_LIBBIN)/liblduMatrixBCFDK

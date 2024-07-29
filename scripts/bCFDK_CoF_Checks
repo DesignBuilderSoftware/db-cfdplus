@@ -1,0 +1,57 @@
+# blueCFD-Kernel: Code-On-FOAM
+# ============================
+# 
+# Authorship: FSD blueCAPE Lda
+# Copyright: 2017
+# License: GNU Public License v3 - http://www.gnu.org/licenses/
+
+checkIfItShouldBuild()
+{
+  NEWEST_SOURCE_DATE=$(find . -name "*.[CH]" -o -name "*.*LN" | \
+                       grep -v lnInclude | \
+                       xargs -I {} date +%s -r {} | \
+                       sort -u | tail -1)
+
+  TARGET_BIN=$(tail -1 Make/files | \
+               sed -e 's/EXE = \(.*\)/\1.exe/' \
+                  -e 's/LIB = \(.*\)/\1.dll/' \
+                  -e 's=(={=' \
+                  -e 's=)=}=')
+  TARGET_BIN=$(eval echo $TARGET_BIN)
+
+  DEPENDENCIES=$(grep realpath Make/options  | \
+                 sed -e 's=-I$(realpath==' \
+                     -e 's=/lnInclude)==' \
+                     -e 's=)==' \
+                     -e 's=\\==')
+
+  if [ -n "$DEPENDENCIES" ]
+  then
+    DEPENDENCIES_DATE=$(find $DEPENDENCIES -name "*.[CH]" | \
+                        grep -v lnInclude | \
+                        xargs -I {} date +%s -r {} | \
+                        sort -u | tail -1)
+  else
+    DEPENDENCIES_DATE=0
+  fi
+
+  if [ -e $TARGET_BIN ]
+  then
+    TARGET_BIN_DATE=$(date +%s -r $TARGET_BIN)
+  else
+    TARGET_BIN_DATE=0
+  fi
+
+  if [ $TARGET_BIN_DATE -gt $NEWEST_SOURCE_DATE -a \
+       $TARGET_BIN_DATE -gt $DEPENDENCIES_DATE ]
+  then
+     echo "Skipping up-to-date build for '$TARGET_BIN'"
+     exit 0
+  elif [ $TARGET_BIN_DATE -lt $DEPENDENCIES_DATE ]
+  then
+    for library in $DEPENDENCIES
+    do
+      wmakeLnInclude $library
+    done
+  fi
+}

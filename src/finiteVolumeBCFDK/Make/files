@@ -1,0 +1,23 @@
+
+fvPatchFields = fields/fvPatchFields
+
+derivedFvPatchFields = $(fvPatchFields)/derived
+$(derivedFvPatchFields)/flowRateInletDirectionVelocity/flowRateInletDirectionVelocityFvPatchVectorField.C
+
+$(derivedFvPatchFields)/calculatedDummyCyclic/calculatedDummyCyclicFvPatchFields.C
+$(derivedFvPatchFields)/cyclicWithValue/cyclicWithValueFvPatchFields.C
+
+$(derivedFvPatchFields)/uniformJumpPressure/uniformJumpPressureFvPatchFields.C
+$(derivedFvPatchFields)/uniformJumpPressureMaster/uniformJumpPressureMasterFvPatchScalarField.C
+$(derivedFvPatchFields)/uniformPressureFunction/uniformPressureFunctionFvPatchScalarField.C
+
+$(derivedFvPatchFields)/fanSwirlOutletVelocity/fanSwirlOutletVelocityFvPatchField.C
+$(derivedFvPatchFields)/fanRedirectedOutletVelocity/fanRedirectedOutletVelocityFvPatchField.C
+$(derivedFvPatchFields)/fanScalarAverageOutlet/fanScalarAverageOutletFvPatchField.C
+
+$(derivedFvPatchFields)/pressureDirectedSwirl/pressureDirectedSwirlFvPatchField.C
+
+$(derivedFvPatchFields)/scalarMassFlowRateInletOutletToRatio/scalarMassFlowRateInletOutletToRatioFvPatchField.C
+$(derivedFvPatchFields)/scalarFluxFickFirstLawBCFDK/scalarFluxFickFirstLawFvPatchScalarFieldBCFDK.C
+
+LIB = $(FOAM_USER_LIBBIN)/libfiniteVolumeBCFDK

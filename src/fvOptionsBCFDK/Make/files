@@ -1,0 +1,10 @@
+/* sources */
+derivedSources=sources/derived
+$(derivedSources)/volumetricHeatSource/volumetricHeatSource.C
+$(derivedSources)/volumetricTracerSource/volumetricTracerSource.C
+$(derivedSources)/ageTimeSource/ageTimeSource.C
+$(derivedSources)/ageTimeSource/ageTimeSourceIO.C
+
+corrections/limitScalarField/limitScalarField.C
+
+LIB = $(FOAM_USER_LIBBIN)/libfvOptionsBCFDK

@@ -1,0 +1,14 @@
+ORIG_SOLVER_PATH = $(FOAM_SOLVERS)/heatTransfer/buoyantSimpleFoam
+
+LNtoo = $E $(call QUIET_MESSAGE,sed,$(<F)) \
+    $(WM_SCHEDULER) sed -e 's=EEqn.H=EEqnBCFDK.H=' \
+        $(ORIG_SOLVER_PATH)/$(<F:LN=C) > $(@D)/$(<F).C $(AND) \
+    $(CC) $(c++FLAGS) $(c++LESSWARN) -c $(@D)/$(<F).C -o $@
+
+$(eval $(call DEFINE_TRANSFORM,.LN))
+
+include $(ORIG_SOLVER_PATH)/Make/options
+
+EXE_INC += \
+    -I. \
+    -I$(ORIG_SOLVER_PATH)

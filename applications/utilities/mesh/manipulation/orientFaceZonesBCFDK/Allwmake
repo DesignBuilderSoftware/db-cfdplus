@@ -1,0 +1,12 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+[ -z "$BCFDKCOFPATH" ] && export BCFDKCOFPATH=$(while cd ..; do if [ -e "buildNclean.sh" ]; then pwd -P; break ; elif [ "$PWD" = "/" ]; then break; fi; done)
+
+[ -n "$BCFDKCOFPATH" ] && source $BCFDKCOFPATH/scripts/bCFDK_CoF_Checks && checkIfItShouldBuild
+
+set -x
+
+wmake
+
+# ----------------------------------------------------------------- end-of-file

@@ -1,0 +1,14 @@
+diffusivityField/diffusivityField.C
+estimateTemperatureOnHeatFluxPatches/estimateTemperatureOnHeatFluxPatches.C
+loadTransportProperties/loadTransportProperties.C
+MachNoBCFDK/MachNoBCFDK.C
+massAccounting/massAccounting.C
+massRatioToFraction/massRatioToFraction.C
+readFieldsBCFDK/readFieldsBCFDK.C
+resetBuoyantPressures/resetBuoyantPressures.C
+scalarTransportBCFDK/scalarTransportBCFDK.C
+staticPressure/staticPressure.C
+temperatureCelcius/temperatureCelcius.C
+writeNowAtEnd/writeNowAtEnd.C
+
+LIB = $(FOAM_USER_LIBBIN)/libfunctionObjectsBCFDK

@@ -1,0 +1,18 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+set -x
+
+wmake all finiteVolumeBCFDK
+wmake all lduMatrixBCFDK
+wmake all functionObjects
+
+wmake all MTModels
+wmake all TTModels
+
+wmake all mesh
+wmake all dynamicFvMeshBCFDK
+
+wmake all fvOptionsBCFDK
+
+# ----------------------------------------------------------------- end-of-file

@@ -1,0 +1,4 @@
+derivedFvPatchFields/alphatJayatillekeWallFunctionBCFDK/alphatJayatillekeWallFunctionBCFDKFvPatchScalarField.C
+derivedFvPatchFields/wallHeatFluxTemperatureBCFDK/wallHeatFluxTemperatureBCFDKFvPatchScalarField.C
+
+LIB = $(FOAM_USER_LIBBIN)/libthermophysicalTransportModelsBCFDK

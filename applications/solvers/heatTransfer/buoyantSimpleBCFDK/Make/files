@@ -1,0 +1,4 @@
+buoyantSimpleFoam.LN
+adjustPhiBCFDK.C
+
+EXE = $(FOAM_USER_APPBIN)/buoyantSimpleBCFDK

@@ -1,0 +1,6 @@
+finalizeHumidityFields/finalizeHumidityFields.C
+initializeHumidityFields/initializeHumidityFields.C
+
+fvOptions/constraints/fixedRelativeHumidityValueConstraint/fixedRelativeHumidityValueConstraint.C
+
+LIB = $(FOAM_USER_LIBBIN)/libhumidityTransportFunctions
